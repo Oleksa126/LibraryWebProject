@@ -8,8 +8,9 @@ import model.User;
  */
 public interface BookRepository {
     boolean addBook(Book book);
-    boolean addUser(User user);
 
-    void searchByGenre();
-    void searchByAuthor();
+    void delete(long id);
+
+    Book getByGenre();
+    Book getByAuthor();
 }
