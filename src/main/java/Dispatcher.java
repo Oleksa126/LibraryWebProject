@@ -9,8 +9,15 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import service.AuthorService;
+import service.GenreService;
+import service.HibernateService;
 import service.UserService;
 import servlet.SearchBook;
+
 
 /**
  * Created by oleks on 25.01.2017.
@@ -41,15 +48,14 @@ public class Dispatcher {
 //    }
 
     public static void main(String []args) {
-        UserService userService= new UserService();
+        User user = new User("oleksa", "baza", 20);
 
-        userService.printConnectInfo();
+        boolean b = user.setEmail("oleksand892-kdfg6gskglfgR@mail.ru.comii");
 
-        long userId = userService.addUser("oleksa", "baza", 20);
-        System.out.println("User id - " + userId);
+        System.out.println("b- " + b);
 
-        User user = userService.getUser(userId);
-        System.out.println("User - " + user);
+
+
 
 
     }

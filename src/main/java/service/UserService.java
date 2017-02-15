@@ -4,10 +4,7 @@ import model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.internal.SessionFactoryImpl;
-import org.hibernate.service.ServiceRegistry;
 import repository.dao.UsersDAO;
 
 import java.sql.Connection;
@@ -18,37 +15,36 @@ import java.sql.SQLException;
  */
 public class UserService {
 
-    private static final String hibernate_show_sql = "true";
-    private static final String hibernate_hbm2ddl_auto = "create";
-
-    private final SessionFactory sessionFactory;
+    private static SessionFactory sessionFactory = null;
 
     public UserService() {
-        Configuration configuration = getMySqlConfiguration();
-        sessionFactory = createSessionFactory(configuration);
+//        Configuration configuration = getMySqlConfiguration();
+//        sessionFactory = createSessionFactory(configuration);
+        sessionFactory = HibernateService.getSessionfactory();
+
     }
 
     @SuppressWarnings("UnusedDeclaration")
-    private Configuration getMySqlConfiguration() {
-        Configuration configuration = new Configuration();
-        configuration.addAnnotatedClass(User.class);
+//    private Configuration getMySqlConfiguration() {
+//        Configuration configuration = new Configuration();
+//        configuration.addAnnotatedClass(User.class);
+//
+//        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+//        configuration.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
+//        configuration.setProperty("hibernate.connection.url", "jdbc:mysql://127.0.0.1:3306/bookrepository");
+//        configuration.setProperty("hibernate.connection.username", "root");
+//        configuration.setProperty("hibernate.connection.password", "root");
+//        configuration.setProperty("hibernate.show_sql", hibernate_show_sql);
+//        configuration.setProperty("hibernate.hbm2ddl.auto", hibernate_hbm2ddl_auto);
+//        return configuration;
+//    }
 
-        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-        configuration.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
-        configuration.setProperty("hibernate.connection.url", "jdbc:mysql://127.0.0.1:3306/bookrepository");
-        configuration.setProperty("hibernate.connection.username", "root");
-        configuration.setProperty("hibernate.connection.password", "root");
-        configuration.setProperty("hibernate.show_sql", hibernate_show_sql);
-        configuration.setProperty("hibernate.hbm2ddl.auto", hibernate_hbm2ddl_auto);
-        return configuration;
-    }
-
-    private static SessionFactory createSessionFactory(Configuration configuration) {
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
-        builder.applySettings(configuration.getProperties());
-        ServiceRegistry serviceRegistry = builder.build();
-        return configuration.buildSessionFactory(serviceRegistry);
-    }
+//    private static SessionFactory createSessionFactory(Configuration configuration) {
+//        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
+//        builder.applySettings(configuration.getProperties());
+//        ServiceRegistry serviceRegistry = builder.build();
+//        return configuration.buildSessionFactory(serviceRegistry);
+//    }
 
     public User getUser(long id) {
         Session session = sessionFactory.openSession();

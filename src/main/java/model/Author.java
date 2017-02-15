@@ -1,14 +1,28 @@
 package model;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
 /**
  * Created by oleks on 25.01.2017.
  */
-public class Author {
+@Entity
+@Table(name = "authors")
+public class Author implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private long id;
+    @Column(name = "firstName")
     private String firstName;
+    @Column(name = "lastName")
     private String lastName;
+    @Column(name = "age")
     private int age;
 
-    Author(){}
+    public Author(){}
+
+    public Author(long id){this.id = id;}
 
     public Author(String firstName, String lastName, int age){
         this.firstName = firstName;

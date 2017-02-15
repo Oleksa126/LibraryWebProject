@@ -1,27 +1,40 @@
 package model;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by oleks on 25.01.2017.
  */
-public class Book {
+@Entity
+@Table(name = "book")
+public class Book implements Serializable{
+
     private List<Author> authorList;
+
     private List<Genre> genreList;
+
+    @Column(name = "title")
     private String title;
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    Book(){}
+    public Book(){}
 
-    public Book(long id, String title, Author author, Genre genre){
+    public Book(long id){this.id = id;}
+
+    public Book(String title, Author author, Genre genre){
         authorList = new ArrayList<>();
         genreList = new ArrayList<>();
 
         setTitle(title);
         this.authorList.add(author);
         addGenre(genre);
-        setId(id);
     }
 
     public void addAuthor(Author author){this.authorList.add(author);}
