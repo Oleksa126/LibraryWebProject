@@ -23,10 +23,10 @@ public class User implements Serializable {
     @Column(name = "email")
     private String email;           // дод в констуктор
 
-    @Column(name = "firsName")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "age")

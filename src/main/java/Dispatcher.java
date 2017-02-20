@@ -48,13 +48,18 @@ public class Dispatcher {
 //    }
 
     public static void main(String []args) {
-        User user = new User("oleksa", "baza", 20);
 
-        boolean b = user.setEmail("oleksand892-kdfg6gskglfgR@mail.ru.comii");
+    SessionFactory sessionFactory = HibernateService.getSessionfactory();
+    Session session = sessionFactory.openSession();
 
-        System.out.println("b- " + b);
+    try{
 
 
+
+    }catch (Exception e){
+        session.getTransaction().rollback();
+        e.getMessage();
+    }
 
 
 

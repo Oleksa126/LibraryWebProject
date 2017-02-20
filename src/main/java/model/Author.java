@@ -13,7 +13,7 @@ public class Author implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
     @Column(name = "lastName")
     private String lastName;
